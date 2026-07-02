@@ -1,7 +1,8 @@
 # SHOWEEY
-loadstring(game:HttpGet(
--- Universal Script Hub
--- Diseño moderno inspirado en interfaces profesionales
+loadstring(game:HttpGet("https://raw.githubusercontent.com/andrespro150221-prog/SHOWEEY/refs/heads/main/script.lua"))()
+-- SHOWEEY Universal Hub
+-- Diseño moderno y profesional
+-- Created by: Your Name
 
 local Library = {}
 local UserInputService = game:GetService("UserInputService")
@@ -25,7 +26,7 @@ local Colors = {
 
 -- Crear ScreenGui principal
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "ModernHub"
+ScreenGui.Name = "SHOWEEY_Hub"
 ScreenGui.Parent = game.CoreGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.ResetOnSpawn = false
@@ -46,18 +47,16 @@ local MainCorner = Instance.new("UICorner")
 MainCorner.CornerRadius = UDim.new(0, 12)
 MainCorner.Parent = MainContainer
 
--- Sombra
-local Shadow = Instance.new("ImageLabel")
+-- Sombra decorativa
+local Shadow = Instance.new("Frame")
 Shadow.Name = "Shadow"
 Shadow.Parent = MainContainer
-Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-Shadow.BackgroundTransparency = 1
-Shadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-Shadow.Size = UDim2.new(1, 40, 1, 40)
-Shadow.ZIndex = 0
-Shadow.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
-Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-Shadow.ImageTransparency = 0.7
+Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Shadow.BackgroundTransparency = 0.3
+Shadow.BorderSizePixel = 0
+Shadow.Position = UDim2.new(0, 0, 0, 0)
+Shadow.Size = UDim2.new(1, 0, 0, 3)
+Shadow.ZIndex = 10
 
 -- Sidebar
 local Sidebar = Instance.new("Frame")
@@ -84,9 +83,9 @@ LogoText.BackgroundTransparency = 1
 LogoText.Position = UDim2.new(0, 20, 0, 20)
 LogoText.Size = UDim2.new(1, -40, 0, 30)
 LogoText.Font = Enum.Font.GothamBold
-LogoText.Text = "UNIVERSAL HUB"
-LogoText.TextColor3 = Colors.Text
-LogoText.TextSize = 18
+LogoText.Text = "SHOWEEY"
+LogoText.TextColor3 = Colors.Accent
+LogoText.TextSize = 22
 LogoText.TextXAlignment = Enum.TextXAlignment.Left
 
 local LogoSubtext = Instance.new("TextLabel")
@@ -95,10 +94,18 @@ LogoSubtext.BackgroundTransparency = 1
 LogoSubtext.Position = UDim2.new(0, 20, 0, 50)
 LogoSubtext.Size = UDim2.new(1, -40, 0, 20)
 LogoSubtext.Font = Enum.Font.Gotham
-LogoSubtext.Text = "Premium Features"
+LogoSubtext.Text = "Universal Hub v2.0"
 LogoSubtext.TextColor3 = Colors.TextDim
 LogoSubtext.TextSize = 12
 LogoSubtext.TextXAlignment = Enum.TextXAlignment.Left
+
+-- Separador
+local Separator = Instance.new("Frame")
+Separator.Parent = Sidebar
+Separator.BackgroundColor3 = Colors.Border
+Separator.BorderSizePixel = 0
+Separator.Position = UDim2.new(0, 10, 0, 80)
+Separator.Size = UDim2.new(1, -20, 0, 1)
 
 -- Contenedor de tabs
 local TabContainer = Instance.new("ScrollingFrame")
@@ -107,9 +114,10 @@ TabContainer.Parent = Sidebar
 TabContainer.BackgroundTransparency = 1
 TabContainer.BorderSizePixel = 0
 TabContainer.Position = UDim2.new(0, 0, 0, 90)
-TabContainer.Size = UDim2.new(1, 0, 1, -90)
+TabContainer.Size = UDim2.new(1, 0, 1, -100)
 TabContainer.ScrollBarThickness = 4
 TabContainer.ScrollBarImageColor3 = Colors.Accent
+TabContainer.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 local TabLayout = Instance.new("UIListLayout")
 TabLayout.Parent = TabContainer
@@ -121,6 +129,42 @@ TabPadding.Parent = TabContainer
 TabPadding.PaddingLeft = UDim.new(0, 10)
 TabPadding.PaddingRight = UDim.new(0, 10)
 TabPadding.PaddingTop = UDim.new(0, 10)
+
+-- User info en la parte inferior del sidebar
+local UserInfo = Instance.new("Frame")
+UserInfo.Name = "UserInfo"
+UserInfo.Parent = Sidebar
+UserInfo.BackgroundColor3 = Colors.Border
+UserInfo.BorderSizePixel = 0
+UserInfo.Position = UDim2.new(0, 10, 1, -50)
+UserInfo.Size = UDim2.new(1, -20, 0, 40)
+
+local UserCorner = Instance.new("UICorner")
+UserCorner.CornerRadius = UDim.new(0, 8)
+UserCorner.Parent = UserInfo
+
+local UserName = Instance.new("TextLabel")
+UserName.Parent = UserInfo
+UserName.BackgroundTransparency = 1
+UserName.Position = UDim2.new(0, 10, 0, 5)
+UserName.Size = UDim2.new(1, -20, 0, 15)
+UserName.Font = Enum.Font.GothamSemibold
+UserName.Text = LocalPlayer.Name
+UserName.TextColor3 = Colors.Text
+UserName.TextSize = 12
+UserName.TextXAlignment = Enum.TextXAlignment.Left
+UserName.TextTruncate = Enum.TextTruncate.AtEnd
+
+local UserStatus = Instance.new("TextLabel")
+UserStatus.Parent = UserInfo
+UserStatus.BackgroundTransparency = 1
+UserStatus.Position = UDim2.new(0, 10, 0, 20)
+UserStatus.Size = UDim2.new(1, -20, 0, 15)
+UserStatus.Font = Enum.Font.Gotham
+UserStatus.Text = "🟢 Online"
+UserStatus.TextColor3 = Colors.Success
+UserStatus.TextSize = 10
+UserStatus.TextXAlignment = Enum.TextXAlignment.Left
 
 -- Contenedor de contenido
 local ContentContainer = Instance.new("Frame")
@@ -143,6 +187,7 @@ HeaderCorner.CornerRadius = UDim.new(0, 12)
 HeaderCorner.Parent = ContentHeader
 
 local HeaderTitle = Instance.new("TextLabel")
+HeaderTitle.Name = "HeaderTitle"
 HeaderTitle.Parent = ContentHeader
 HeaderTitle.BackgroundTransparency = 1
 HeaderTitle.Position = UDim2.new(0, 20, 0, 0)
@@ -166,6 +211,7 @@ CloseButton.Font = Enum.Font.GothamBold
 CloseButton.Text = "×"
 CloseButton.TextColor3 = Colors.Text
 CloseButton.TextSize = 24
+CloseButton.AutoButtonColor = false
 
 local CloseCorner = Instance.new("UICorner")
 CloseCorner.CornerRadius = UDim.new(0, 8)
@@ -184,10 +230,28 @@ MinimizeButton.Font = Enum.Font.GothamBold
 MinimizeButton.Text = "−"
 MinimizeButton.TextColor3 = Colors.Text
 MinimizeButton.TextSize = 24
+MinimizeButton.AutoButtonColor = false
 
 local MinCorner = Instance.new("UICorner")
 MinCorner.CornerRadius = UDim.new(0, 8)
 MinCorner.Parent = MinimizeButton
+
+-- Hover effects para botones del header
+CloseButton.MouseEnter:Connect(function()
+    TweenService:Create(CloseButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(255, 80, 80)}):Play()
+end)
+
+CloseButton.MouseLeave:Connect(function()
+    TweenService:Create(CloseButton, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Danger}):Play()
+end)
+
+MinimizeButton.MouseEnter:Connect(function()
+    TweenService:Create(MinimizeButton, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Secondary}):Play()
+end)
+
+MinimizeButton.MouseLeave:Connect(function()
+    TweenService:Create(MinimizeButton, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Border}):Play()
+end)
 
 -- Scroll del contenido
 local ContentScroll = Instance.new("ScrollingFrame")
@@ -199,6 +263,7 @@ ContentScroll.Position = UDim2.new(0, 0, 0, 70)
 ContentScroll.Size = UDim2.new(1, 0, 1, -70)
 ContentScroll.ScrollBarThickness = 6
 ContentScroll.ScrollBarImageColor3 = Colors.Accent
+ContentScroll.CanvasSize = UDim2.new(0, 0, 0, 0)
 
 local ContentLayout = Instance.new("UIListLayout")
 ContentLayout.Parent = ContentScroll
@@ -212,7 +277,11 @@ ContentPadding.PaddingRight = UDim.new(0, 20)
 ContentPadding.PaddingTop = UDim.new(0, 15)
 ContentPadding.PaddingBottom = UDim.new(0, 15)
 
--- Funciones auxiliares
+-- Variables globales para tabs
+local currentTab = nil
+local tabs = {}
+
+-- Función para crear tabs
 local function CreateTab(name, icon)
     local TabButton = Instance.new("TextButton")
     TabButton.Name = name .. "Tab"
@@ -235,28 +304,73 @@ local function CreateTab(name, icon)
     TabPadding.PaddingLeft = UDim.new(0, 15)
     TabPadding.Parent = TabButton
     
+    -- Contenedor para el contenido del tab
+    local TabContent = Instance.new("Folder")
+    TabContent.Name = name .. "Content"
+    TabContent.Parent = ContentScroll
+    
+    tabs[name] = {
+        Button = TabButton,
+        Content = TabContent,
+        Active = false
+    }
+    
     TabButton.MouseEnter:Connect(function()
-        if TabButton.BackgroundColor3 ~= Colors.Accent then
+        if not tabs[name].Active then
             TweenService:Create(TabButton, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Secondary}):Play()
         end
     end)
     
     TabButton.MouseLeave:Connect(function()
-        if TabButton.BackgroundColor3 ~= Colors.Accent then
+        if not tabs[name].Active then
             TweenService:Create(TabButton, TweenInfo.new(0.2), {BackgroundColor3 = Colors.Border}):Play()
         end
     end)
     
-    return TabButton
+    TabButton.MouseButton1Click:Connect(function()
+        -- Desactivar todos los tabs
+        for tabName, tabData in pairs(tabs) do
+            tabData.Active = false
+            TweenService:Create(tabData.Button, TweenInfo.new(0.2), {
+                BackgroundColor3 = Colors.Border,
+                TextColor3 = Colors.TextDim
+            }):Play()
+            
+            -- Ocultar contenido
+            for _, child in pairs(tabData.Content:GetChildren()) do
+                child.Visible = false
+            end
+        end
+        
+        -- Activar tab seleccionado
+        tabs[name].Active = true
+        TweenService:Create(TabButton, TweenInfo.new(0.2), {
+            BackgroundColor3 = Colors.Accent,
+            TextColor3 = Colors.Text
+        }):Play()
+        
+        -- Mostrar contenido
+        for _, child in pairs(TabContent:GetChildren()) do
+            child.Visible = true
+        end
+        
+        -- Actualizar título del header
+        HeaderTitle.Text = name
+        currentTab = name
+    end)
+    
+    return TabContent
 end
 
-local function CreateToggle(name, description, callback)
+-- Función para crear Toggle
+local function CreateToggle(parent, name, description, callback)
     local ToggleFrame = Instance.new("Frame")
     ToggleFrame.Name = name .. "Toggle"
-    ToggleFrame.Parent = ContentScroll
+    ToggleFrame.Parent = parent
     ToggleFrame.BackgroundColor3 = Colors.Secondary
     ToggleFrame.BorderSizePixel = 0
     ToggleFrame.Size = UDim2.new(1, 0, 0, 70)
+    ToggleFrame.Visible = false
     
     local ToggleCorner = Instance.new("UICorner")
     ToggleCorner.CornerRadius = UDim.new(0, 10)
@@ -316,11 +430,11 @@ local function CreateToggle(name, description, callback)
         toggled = not toggled
         
         if toggled then
-            TweenService:Create(ToggleButton, TweenInfo.new(0.3), {BackgroundColor3 = Colors.Accent}):Play()
-            TweenService:Create(ToggleCircle, TweenInfo.new(0.3), {Position = UDim2.new(1, -25, 0.5, 0)}):Play()
+            TweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Colors.Accent}):Play()
+            TweenService:Create(ToggleCircle, TweenInfo.new(0.3, Enum.EasingStyle.Quad), {Position = UDim2.new(1, -25, 0.5, 0)}):Play()
         else
-            TweenService:Create(ToggleButton, TweenInfo.new(0.3), {BackgroundColor3 = Colors.Border}):Play()
-            TweenService:Create(ToggleCircle, TweenInfo.new(0.3), {Position = UDim2.new(0, 3, 0.5, 0)}):Play()
+            TweenService:Create(ToggleButton, TweenInfo.new(0.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Colors.Border}):Play()
+            TweenService:Create(ToggleCircle, TweenInfo.new(0.3, Enum.EasingStyle.Quad), {Position = UDim2.new(0, 3, 0.5, 0)}):Play()
         end
         
         if callback then
@@ -331,13 +445,15 @@ local function CreateToggle(name, description, callback)
     return ToggleFrame
 end
 
-local function CreateButton(name, description, callback)
+-- Función para crear Button
+local function CreateButton(parent, name, description, callback)
     local ButtonFrame = Instance.new("Frame")
     ButtonFrame.Name = name .. "Button"
-    ButtonFrame.Parent = ContentScroll
+    ButtonFrame.Parent = parent
     ButtonFrame.BackgroundColor3 = Colors.Secondary
     ButtonFrame.BorderSizePixel = 0
     ButtonFrame.Size = UDim2.new(1, 0, 0, 70)
+    ButtonFrame.Visible = false
     
     local ButtonCorner = Instance.new("UICorner")
     ButtonCorner.CornerRadius = UDim.new(0, 10)
@@ -391,6 +507,11 @@ local function CreateButton(name, description, callback)
     end)
     
     ActionButton.MouseButton1Click:Connect(function()
+        -- Animación de click
+        TweenService:Create(ActionButton, TweenInfo.new(0.1), {Size = UDim2.new(0, 95, 0, 33)}):Play()
+        wait(0.1)
+        TweenService:Create(ActionButton, TweenInfo.new(0.1), {Size = UDim2.new(0, 100, 0, 35)}):Play()
+        
         if callback then
             callback()
         end
@@ -399,12 +520,125 @@ local function CreateButton(name, description, callback)
     return ButtonFrame
 end
 
+-- Función para crear Slider
+local function CreateSlider(parent, name, description, min, max, default, callback)
+    local SliderFrame = Instance.new("Frame")
+    SliderFrame.Name = name .. "Slider"
+    SliderFrame.Parent = parent
+    SliderFrame.BackgroundColor3 = Colors.Secondary
+    SliderFrame.BorderSizePixel = 0
+    SliderFrame.Size = UDim2.new(1, 0, 0, 80)
+    SliderFrame.Visible = false
+    
+    local SliderCorner = Instance.new("UICorner")
+    SliderCorner.CornerRadius = UDim.new(0, 10)
+    SliderCorner.Parent = SliderFrame
+    
+    local SliderTitle = Instance.new("TextLabel")
+    SliderTitle.Parent = SliderFrame
+    SliderTitle.BackgroundTransparency = 1
+    SliderTitle.Position = UDim2.new(0, 15, 0, 10)
+    SliderTitle.Size = UDim2.new(1, -80, 0, 20)
+    SliderTitle.Font = Enum.Font.GothamSemibold
+    SliderTitle.Text = name
+    SliderTitle.TextColor3 = Colors.Text
+    SliderTitle.TextSize = 15
+    SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local SliderValue = Instance.new("TextLabel")
+    SliderValue.Parent = SliderFrame
+    SliderValue.AnchorPoint = Vector2.new(1, 0)
+    SliderValue.BackgroundTransparency = 1
+    SliderValue.Position = UDim2.new(1, -15, 0, 10)
+    SliderValue.Size = UDim2.new(0, 60, 0, 20)
+    SliderValue.Font = Enum.Font.GothamBold
+    SliderValue.Text = tostring(default)
+    SliderValue.TextColor3 = Colors.Accent
+    SliderValue.TextSize = 14
+    SliderValue.TextXAlignment = Enum.TextXAlignment.Right
+    
+    local SliderDesc = Instance.new("TextLabel")
+    SliderDesc.Parent = SliderFrame
+    SliderDesc.BackgroundTransparency = 1
+    SliderDesc.Position = UDim2.new(0, 15, 0, 30)
+    SliderDesc.Size = UDim2.new(1, -30, 0, 15)
+    SliderDesc.Font = Enum.Font.Gotham
+    SliderDesc.Text = description
+    SliderDesc.TextColor3 = Colors.TextDim
+    SliderDesc.TextSize = 11
+    SliderDesc.TextXAlignment = Enum.TextXAlignment.Left
+    
+    local SliderBack = Instance.new("Frame")
+    SliderBack.Parent = SliderFrame
+    SliderBack.BackgroundColor3 = Colors.Border
+    SliderBack.BorderSizePixel = 0
+    SliderBack.Position = UDim2.new(0, 15, 1, -25)
+    SliderBack.Size = UDim2.new(1, -30, 0, 6)
+    
+    local SliderBackCorner = Instance.new("UICorner")
+    SliderBackCorner.CornerRadius = UDim.new(1, 0)
+    SliderBackCorner.Parent = SliderBack
+    
+    local SliderFill = Instance.new("Frame")
+    SliderFill.Parent = SliderBack
+    SliderFill.BackgroundColor3 = Colors.Accent
+    SliderFill.BorderSizePixel = 0
+    SliderFill.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
+    
+    local SliderFillCorner = Instance.new("UICorner")
+    SliderFillCorner.CornerRadius = UDim.new(1, 0)
+    SliderFillCorner.Parent = SliderFill
+    
+    local SliderButton = Instance.new("TextButton")
+    SliderButton.Parent = SliderBack
+    SliderButton.BackgroundTransparency = 1
+    SliderButton.Size = UDim2.new(1, 0, 1, 0)
+    SliderButton.Text = ""
+    
+    local dragging = false
+    local value = default
+    
+    local function updateSlider(input)
+        local pos = math.clamp((input.Position.X - SliderBack.AbsolutePosition.X) / SliderBack.AbsoluteSize.X, 0, 1)
+        value = math.floor(min + (max - min) * pos)
+        
+        SliderFill.Size = UDim2.new(pos, 0, 1, 0)
+        SliderValue.Text = tostring(value)
+        
+        if callback then
+            callback(value)
+        end
+    end
+    
+    SliderButton.MouseButton1Down:Connect(function()
+        dragging = true
+    end)
+    
+    UserInputService.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+    
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            updateSlider(input)
+        end
+    end)
+    
+    SliderButton.MouseButton1Click:Connect(function(input)
+        updateSlider(game:GetService("UserInputService"):GetMouseLocation())
+    end)
+    
+    return SliderFrame
+end
+
 -- Animación de apertura
-MainContainer:TweenSize(UDim2.new(0, 750, 0, 500), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.5, true)
+MainContainer:TweenSize(UDim2.new(0, 800, 0, 550), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.6, true)
 
 -- Funcionalidad de cerrar
 CloseButton.MouseButton1Click:Connect(function()
-    MainContainer:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.3, true, function()
+    MainContainer:TweenSize(UDim2.new(0, 0, 0, 0), Enum.EasingDirection.In, Enum.EasingStyle.Back, 0.4, true, function()
         ScreenGui:Destroy()
     end)
 end)
@@ -414,9 +648,9 @@ local minimized = false
 MinimizeButton.MouseButton1Click:Connect(function()
     minimized = not minimized
     if minimized then
-        MainContainer:TweenSize(UDim2.new(0, 750, 0, 60), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+        MainContainer:TweenSize(UDim2.new(0, 800, 0, 60), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
     else
-        MainContainer:TweenSize(UDim2.new(0, 750, 0, 500), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
+        MainContainer:TweenSize(UDim2.new(0, 800, 0, 550), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.3, true)
     end
 end)
 
@@ -450,22 +684,16 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
--- Crear tabs
-local MainTab = CreateTab("Main", "🏠")
+-- ==================== CREAR TABS ====================
+
 local PlayerTab = CreateTab("Player", "👤")
+local CombatTab = CreateTab("Combat", "⚔️")
 local VisualTab = CreateTab("Visual", "👁️")
 local MiscTab = CreateTab("Misc", "⚙️")
 
--- Variables para funcionalidades
-local speedEnabled = false
-local jumpEnabled = false
-local flyEnabled = false
-local noClipEnabled = false
-local espEnabled = false
+-- ==================== PLAYER TAB ====================
 
--- Features del Player
-CreateToggle("Speed Boost", "Increase your movement speed", function(enabled)
-    speedEnabled = enabled
+CreateToggle(PlayerTab, "Speed Boost", "Increase your walking speed dramatically", function(enabled)
     if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         if enabled then
             LocalPlayer.Character.Humanoid.WalkSpeed = 100
@@ -475,8 +703,13 @@ CreateToggle("Speed Boost", "Increase your movement speed", function(enabled)
     end
 end)
 
-CreateToggle("Super Jump", "Jump higher than normal", function(enabled)
-    jumpEnabled = enabled
+CreateSlider(PlayerTab, "Walk Speed", "Set custom walking speed", 16, 200, 16, function(value)
+    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+        LocalPlayer.Character.Humanoid.WalkSpeed = value
+    end
+end)
+
+CreateToggle(PlayerTab, "Super Jump", "Jump much higher than normal", function(enabled)
     if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         if enabled then
             LocalPlayer.Character.Humanoid.JumpPower = 120
@@ -486,7 +719,16 @@ CreateToggle("Super Jump", "Jump higher than normal", function(enabled)
     end
 end)
 
-CreateToggle("Fly Mode", "Enable flight with WASD controls", function(enabled)
+CreateSlider(PlayerTab, "Jump Power", "Set custom jump height", 50, 200, 50, function(value)
+    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+        LocalPlayer.Character.Humanoid.JumpPower = value
+    end
+end)
+
+local flyEnabled = false
+local flySpeed = 50
+
+CreateToggle(PlayerTab, "Fly Mode", "Fly using WASD controls (Space/Shift for up/down)", function(enabled)
     flyEnabled = enabled
     
     if enabled then
@@ -512,16 +754,22 @@ CreateToggle("Fly Mode", "Enable flight with WASD controls", function(enabled)
                     bv.Velocity = Vector3.new(0, 0, 0)
                     
                     if UserInputService:IsKeyDown(Enum.KeyCode.W) then
-                        bv.Velocity = bv.Velocity + workspace.CurrentCamera.CFrame.LookVector * 50
+                        bv.Velocity = bv.Velocity + workspace.CurrentCamera.CFrame.LookVector * flySpeed
                     end
                     if UserInputService:IsKeyDown(Enum.KeyCode.S) then
-                        bv.Velocity = bv.Velocity - workspace.CurrentCamera.CFrame.LookVector * 50
+                        bv.Velocity = bv.Velocity - workspace.CurrentCamera.CFrame.LookVector * flySpeed
                     end
                     if UserInputService:IsKeyDown(Enum.KeyCode.A) then
-                        bv.Velocity = bv.Velocity - workspace.CurrentCamera.CFrame.RightVector * 50
+                        bv.Velocity = bv.Velocity - workspace.CurrentCamera.CFrame.RightVector * flySpeed
                     end
                     if UserInputService:IsKeyDown(Enum.KeyCode.D) then
-                        bv.Velocity = bv.Velocity + workspace.CurrentCamera.CFrame.RightVector * 50
+                        bv.Velocity = bv.Velocity + workspace.CurrentCamera.CFrame.RightVector * flySpeed
+                    end
+                    if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
+                        bv.Velocity = bv.Velocity + Vector3.new(0, flySpeed, 0)
+                    end
+                    if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+                        bv.Velocity = bv.Velocity - Vector3.new(0, flySpeed, 0)
                     end
                 end
             end
@@ -532,21 +780,29 @@ CreateToggle("Fly Mode", "Enable flight with WASD controls", function(enabled)
     end
 end)
 
-CreateToggle("No Clip", "Walk through walls", function(enabled)
-    noClipEnabled = enabled
-    
-    RunService.Stepped:Connect(function()
-        if noClipEnabled and LocalPlayer.Character then
-            for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    part.CanCollide = false
-                end
-            end
-        end
-    end)
+CreateSlider(PlayerTab, "Fly Speed", "Adjust flying speed", 20, 150, 50, function(value)
+    flySpeed = value
 end)
 
-CreateToggle("Infinite Jump", "Jump infinitely in the air", function(enabled)
+local noClipEnabled = false
+
+CreateToggle(PlayerTab, "NoClip", "Walk through walls and objects", function(enabled)
+    noClipEnabled = enabled
+    
+    if enabled then
+        RunService.Stepped:Connect(function()
+            if noClipEnabled and LocalPlayer.Character then
+                for _, part in pairs(LocalPlayer.Character:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = false
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+CreateToggle(PlayerTab, "Infinite Jump", "Jump infinitely while in the air", function(enabled)
     if enabled then
         UserInputService.JumpRequest:Connect(function()
             if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
@@ -556,13 +812,124 @@ CreateToggle("Infinite Jump", "Jump infinitely in the air", function(enabled)
     end
 end)
 
-CreateButton("Reset Character", "Respawn your character", function()
+-- ==================== COMBAT TAB ====================
+
+CreateToggle(CombatTab, "Auto Click", "Automatically click at high speed", function(enabled)
+    spawn(function()
+        while enabled and wait(0.01) do
+            mouse1click()
+        end
+    end)
+end)
+
+CreateToggle(CombatTab, "Kill Aura", "Automatically attack nearby enemies", function(enabled)
+    spawn(function()
+        while enabled and wait(0.1) do
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                for _, player in pairs(Players:GetPlayers()) do
+                    if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        local distance = (player.Character.HumanoidRootPart.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                        if distance <= 20 then
+                            -- Aquí iría la lógica de ataque dependiendo del juego
+                            print("Attacking:", player.Name)
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+CreateButton(CombatTab, "God Mode", "Attempt to enable invincibility", function()
+    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+        LocalPlayer.Character.Humanoid.MaxHealth = math.huge
+        LocalPlayer.Character.Humanoid.Health = math.huge
+    end
+end)
+
+-- ==================== VISUAL TAB ====================
+
+CreateToggle(VisualTab, "ESP Players", "See players through walls", function(enabled)
+    if enabled then
+        for _, player in pairs(Players:GetPlayers()) do
+            if player ~= LocalPlayer and player.Character then
+                local highlight = Instance.new("Highlight")
+                highlight.Name = "ESP"
+                highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+                highlight.Parent = player.Character
+            end
+        end
+        
+        Players.PlayerAdded:Connect(function(player)
+            player.CharacterAdded:Connect(function(character)
+                wait(1)
+                local highlight = Instance.new("Highlight")
+                highlight.Name = "ESP"
+                highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+                highlight.Parent = character
+            end)
+        end)
+    else
+        for _, player in pairs(Players:GetPlayers()) do
+            if player.Character and player.Character:FindFirstChild("ESP") then
+                player.Character.ESP:Destroy()
+            end
+        end
+    end
+end)
+
+CreateToggle(VisualTab, "Fullbright", "Remove all darkness and shadows", function(enabled)
+    if enabled then
+        game:GetService("Lighting").Brightness = 2
+        game:GetService("Lighting").ClockTime = 14
+        game:GetService("Lighting").FogEnd = 100000
+        game:GetService("Lighting").GlobalShadows = false
+        game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+    else
+        game:GetService("Lighting").Brightness = 1
+        game:GetService("Lighting").ClockTime = 12
+        game:GetService("Lighting").FogEnd = 100000
+        game:GetService("Lighting").GlobalShadows = true
+    end
+end)
+
+local fovCircle
+CreateSlider(VisualTab, "FOV Circle", "Show aiming field of view", 0, 500, 0, function(value)
+    if fovCircle then
+        fovCircle:Remove()
+    end
+    
+    if value > 0 then
+        local Drawing = Drawing or {}
+        if Drawing.new then
+            fovCircle = Drawing.new("Circle")
+            fovCircle.Thickness = 2
+            fovCircle.NumSides = 100
+            fovCircle.Radius = value
+            fovCircle.Filled = false
+            fovCircle.Visible = true
+            fovCircle.Color = Color3.fromRGB(88, 101, 242)
+            
+            RunService.RenderStepped:Connect(function()
+                if fovCircle then
+                    fovCircle.Position = UserInputService:GetMouseLocation()
+                end
+            end)
+        end
+    end
+end)
+
+-- ==================== MISC TAB ====================
+
+CreateButton(MiscTab, "Reset Character", "Respawn your character instantly", function()
     if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         LocalPlayer.Character.Humanoid.Health = 0
     end
 end)
 
-CreateButton("Remove Accessories", "Remove all hats and accessories", function()
+CreateButton(MiscTab, "Remove Accessories", "Remove all hats and accessories", function()
     if LocalPlayer.Character then
         for _, accessory in pairs(LocalPlayer.Character:GetChildren()) do
             if accessory:IsA("Accessory") then
@@ -572,11 +939,50 @@ CreateButton("Remove Accessories", "Remove all hats and accessories", function()
     end
 end)
 
+CreateButton(MiscTab, "Anti-AFK", "Prevent being kicked for inactivity", function()
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait(1)
+        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+
+CreateToggle(MiscTab, "Chat Spy", "See all player chats (if possible)", function(enabled)
+    if enabled then
+        local StarterGui = game:GetService("StarterGui")
+        StarterGui:SetCore("ChatMakeSystemMessage", {
+            Text = "[SHOWEEY] Chat Spy Enabled!",
+            Color = Colors.Success,
+            Font = Enum.Font.GothamBold,
+            FontSize = Enum.FontSize.Size24
+        })
+    end
+end)
+
 -- Actualizar ContentScroll CanvasSize
 ContentLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     ContentScroll.CanvasSize = UDim2.new(0, 0, 0, ContentLayout.AbsoluteContentSize.Y + 30)
 end)
 
-TabContainer.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y + 20)
+TabLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    TabContainer.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y + 20)
+end)
 
-print("✅ Universal Hub loaded successfully!")
+-- Activar primera tab por defecto
+wait(0.5)
+if tabs["Player"] then
+    tabs["Player"].Button.MouseButton1Click:Fire()
+end
+
+-- Notificación de carga
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("SendNotification", {
+    Title = "SHOWEEY Hub",
+    Text = "Loaded successfully! Welcome " .. LocalPlayer.Name,
+    Duration = 5,
+})
+
+print("✅ SHOWEEY Universal Hub v2.0 loaded successfully!")
+print("👤 User:", LocalPlayer.Name)
+print("🎮 Game:", game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name)
